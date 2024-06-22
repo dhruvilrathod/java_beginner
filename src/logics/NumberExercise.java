@@ -9,10 +9,11 @@ public class NumberExercise {
     }
 
     public static void main(String[] args) {
-        NumberExercise n = new NumberExercise(20);
+        NumberExercise n = new NumberExercise(84);
         System.out.println(n.sumUptoN());
         n.printNumberTriangle();
         System.out.println(n.sumOfDivisors());
+        System.out.println(n.getLastDigit());
     }
 
     public int sumUptoN() {
@@ -30,6 +31,11 @@ public class NumberExercise {
             }
             System.out.println();
         }
+    }
+
+    public int getLastDigit() {
+        if (this.number < 0) return -1;
+        return this.number % 10;
     }
 
     public int sumOfDivisors() {
