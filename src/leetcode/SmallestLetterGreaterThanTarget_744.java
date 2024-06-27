@@ -11,6 +11,8 @@ public class SmallestLetterGreaterThanTarget_744 {
         int start = 0;
         int end = letters.length - 1;
 
+        if (target < letters[start] || target > letters[end]) return letters[0];
+
         while (start <= end) {
             int middle = start + (end - start) / 2;
 
@@ -20,6 +22,6 @@ public class SmallestLetterGreaterThanTarget_744 {
                 start = middle + 1;
             }
         }
-        return letters[start % letters.length];
+        return letters[start];
     }
 }
