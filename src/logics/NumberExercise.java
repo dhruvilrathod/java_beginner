@@ -16,6 +16,38 @@ public class NumberExercise {
         System.out.println(n.getLastDigit());
     }
 
+    public static int getSumOfDigits(int number) {
+        if (number < 0) return -1;
+        int sum = 0;
+        while (number > 0) {
+            sum += number % 10;
+            number = number / 10;
+        }
+        return sum;
+    }
+
+    public static int getNumberOfDigits(int number) {
+        if (number < 0) return -1;
+        else if (number == 0) return 1;
+
+        int count = 1;
+        while (number / 10 > 0) {
+            count++;
+            number = number / 10;
+        }
+        return count;
+    }
+
+    public static int reverseNumber(int number) {
+        if (number < 0) return -1;
+        int reverse = 0;
+        while (number > 0) {
+            reverse = (reverse * 10) + (number % 10);
+            number = number / 10;
+        }
+        return reverse;
+    }
+
     public int sumUptoN() {
         int sum = 0;
         for (int i = 1; i <= this.number; i++) {
