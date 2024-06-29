@@ -50,4 +50,8 @@ public class SearchInRotatedSortedArray_33 {
         }
         return start;
     }
+
+    public static int findTimesOfRotated(int[] arr) {
+        return findPivotIndexInAscendingArray(arr) + 1;
+    }
 }
