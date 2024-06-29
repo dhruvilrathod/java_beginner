@@ -1,6 +1,8 @@
 package leetcode;
 
 // https://leetcode.com/problems/peak-index-in-a-mountain-array/description/
+// https://leetcode.com/problems/find-in-mountain-array/ => Hard => Combination of this code and binary search
+
 // Binary Search as mountain array is consists of two sorted arrays
 public class PeakIndexInMountainArray_852 {
     public static void main(String[] args) {
