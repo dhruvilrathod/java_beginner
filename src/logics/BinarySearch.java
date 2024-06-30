@@ -1,5 +1,7 @@
 package logics;
 
+import java.util.Arrays;
+
 public class BinarySearch {
 
     public static void main(String[] args) {
@@ -7,6 +9,13 @@ public class BinarySearch {
         System.out.println(orderAgnosticBinarySearch(new int[]{1234, 1121, 455, 176, 99}, 1234));
         System.out.println(findCelling(new int[]{11, 14, 55, 76, 99}, 60));
         System.out.println(findFloor(new int[]{11, 14, 55, 76, 99}, 60));
+        int[][] martix = {
+                {10, 20, 30, 40},
+                {15, 25, 35, 45},
+                {28, 29, 37, 49},
+                {33, 34, 38, 50}
+        };
+        System.out.println(Arrays.toString(binarySearchIn2DArray(martix, 333)));
     }
 
     //    time complexity = O(log2 n)
@@ -125,4 +134,23 @@ public class BinarySearch {
         }
         return -1;
     }
+
+    /**
+     * Search for an element in column wise and row wise sorted array
+     * Concept: Reduce the search space every iteration by comparing row element and column element with target
+     * Assumption: It's a matrix in which the size of all rows are same
+     * Time Complexity: O(n)
+     * Space Complexity: o(1)
+     */
+    public static int[] binarySearchIn2DArray(int[][] arr, int target) {
+        int row = 0;
+        int col = arr.length - 1;
+        while (col >= 0 && row < arr.length) {
+            if (arr[row][col] == target) return new int[]{row, col};
+            else if (arr[row][col] < target) row++;
+            else col--;
+        }
+        return new int[]{-1, -1};
+    }
+
 }
