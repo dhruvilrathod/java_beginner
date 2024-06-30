@@ -9,13 +9,20 @@ public class BinarySearch {
         System.out.println(orderAgnosticBinarySearch(new int[]{1234, 1121, 455, 176, 99}, 1234));
         System.out.println(findCelling(new int[]{11, 14, 55, 76, 99}, 60));
         System.out.println(findFloor(new int[]{11, 14, 55, 76, 99}, 60));
-        int[][] martix = {
+        int[][] matrix = {
                 {10, 20, 30, 40},
                 {15, 25, 35, 45},
                 {28, 29, 37, 49},
                 {33, 34, 38, 50}
         };
-        System.out.println(Arrays.toString(binarySearchIn2DArray(martix, 333)));
+        int[][] matrix2 = {
+                {1, 2, 3, 4},
+                {5, 6, 7, 8},
+                {9, 10, 11, 12},
+                {13, 14, 15, 16}
+        };
+        System.out.println(Arrays.toString(binarySearchIn2DArray(matrix, 333)));
+        System.out.println(Arrays.toString(binarySearchInFullySorted2DArray(matrix2, 13)));
     }
 
     //    time complexity = O(log2 n)
@@ -153,4 +160,32 @@ public class BinarySearch {
         return new int[]{-1, -1};
     }
 
+    /**
+     * Fully sorted 2D array: last element of the previous row is always smaller than first element of next row
+     * Logic: divide rows in half, in the middle row, compare the target: arr[mid][0] <= target <= arr[mid][len]
+     * if in the range => apply binary search on that row
+     * else if smaller, then apply half logic in the first half, otherwise on the second half
+     * Logic: Binary Search
+     * Time Complexity: O(log n) + O(log n) = O(kog n)
+     * Space Complexity:
+     */
+    public static int[] binarySearchInFullySorted2DArray(int[][] arr, int target) {
+        int startR = 0;
+        int endR = arr.length - 1;
+
+//        executes log n times
+        while (startR <= endR) {
+            int midR = startR + (endR - startR) / 2;
+            int currEnd = arr[startR].length - 1;
+            if (arr[startR][0] == target) return new int[]{startR, 0};
+            else if (arr[startR][currEnd] == target) return new int[]{startR, currEnd};
+            else if (target > arr[startR][currEnd]) startR++;
+            else if (target < arr[startR][0]) endR--;
+            else {
+//                executes only once with time complexity of O(log n)
+                return new int[]{startR, binarySearchInRange(target, arr[startR], 1, currEnd - 1)};
+            }
+        }
+        return new int[]{-1, -1};
+    }
 }
